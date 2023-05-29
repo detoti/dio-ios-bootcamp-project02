@@ -7,16 +7,14 @@ class Printer {
         self.toner = max(min(toner, 100), 0)
     }
     
-    func printing(option: String) {
+    func printing(option: PrintOption) {
         switch option {
-        case "text":
+        case .text:
             print("O documento de texto foi impresso.")
             toner -= 20
-        case "image":
+        case .image:
             print("O documento de imagem foi impresso.")
             toner -= 30
-        default:
-            print("Opção Invalida.")
         }
         
     }
@@ -31,10 +29,15 @@ class Printer {
     }
 }
 
+enum PrintOption {
+    case text
+    case image
+}
+
 let myPrinter = Printer()
 myPrinter.tonerLevel()
-myPrinter.printing(option: "text")
-myPrinter.printing(option: "image")
+myPrinter.printing(option: .text)
+myPrinter.printing(option: .image)
 myPrinter.tonerLevel()
 myPrinter.reloadToner()
 myPrinter.tonerLevel()
